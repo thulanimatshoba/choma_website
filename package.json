@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "husky": ">=6"
+  },
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "lint-staged": ">=10",
+    "prettier": "^2.6.2"
+  },
+  "lint-staged": {
+      "*.php": "./tools/phpcbf",
+      "*.{js,css,md}": "prettier --write"
+  }
+}

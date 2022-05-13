@@ -1,0 +1,30 @@
+# Application
+web/app/plugins/*
+!web/app/plugins/.gitkeep
+web/app/mu-plugins/*/
+web/app/upgrade
+web/app/uploads/*
+!web/app/uploads/.gitkeep
+web/app/cache/*
+
+web/app/themes/choma
+!/web/app/plugins/stashed-out/
+!/web/app/plugins/carbon-fields/
+# WordPress
+web/wp
+web/.htaccess
+/node_modules/
+
+# Logs
+*.log
+
+# Dotenv
+.env
+.env.*
+!.env.example
+
+# Composer
+/vendor
+
+# WP-CLI
+wp-cli.local.yml

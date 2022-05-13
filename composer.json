@@ -1,0 +1,100 @@
+{
+  "name": "thulanimatshoba/choma_website",
+  "type": "project",
+  "license": "MIT",
+  "description": "WordPress boilerplate with Composer, easier configuration, and an improved folder structure",
+  "homepage": "https://bitbucket.org/thulanimatshoba/choma_website/src",
+  "authors": [
+    {
+      "name": "Thulani Matshoba",
+      "email": "info@thulanimatshoba.co.za",
+      "homepage": "https://thulanimatshoba.co.za"
+    }
+  ],
+  "keywords": [
+    "bedrock", "composer", "roots", "wordpress", "wp", "wp-config"
+  ],
+  "support": {
+    "issues": "https://bitbucket.org/thulanimatshoba/choma_website/issues?status=new&status=open"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org",
+      "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
+    },
+    {
+      "type": "package",
+      "package": {
+        "type": "wordpress-plugin",
+        "name": "local-plugin/carbon-fields",
+        "version": "dev-develop",
+        "dist": {
+          "type": "zip",
+          "url": "plugins/carbon-fields.zip"
+        }
+      }
+    },
+    {
+      "type": "git",
+      "url": "git@github.com:thulanimatshoba/choma.git"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "composer/installers": "^2.1",
+    "vlucas/phpdotenv": "^5.4",
+    "oscarotero/env": "^2.1",
+    "roots/bedrock-autoloader": "^1.0",
+    "roots/bedrock-disallow-indexing": "^2.0",
+    "roots/wordpress": "5.9.3",
+    "roots/wp-config": "1.0.0",
+    "roots/wp-password-bcrypt": "1.1.0",
+    "wpackagist-plugin/woocommerce": "^6.5",
+    "wpackagist-plugin/jetpack": "^10.9",
+    "wpackagist-plugin/speechkit": "^3.6",
+    "wpackagist-plugin/wordpress-seo": "^18.8",
+    "wpackagist-plugin/query-monitor": "^3.9",
+    "wpackagist-plugin/google-listings-and-ads": "^1.12",
+    "thulanimatshoba/choma": "dev-develop",
+    "local-plugin/carbon-fields": "dev-develop"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.6.2",
+    "roave/security-advisories": "dev-latest",
+    "automattic/vipwpcs": "^2.3",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "allow-plugins": {
+      "composer/installers": true,
+      "roots/wordpress-core-installer": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "installer-paths": {
+      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+      "web/app/themes/{$name}/": ["type:wordpress-theme"]
+    },
+    "wordpress-install-dir": "web/wp"
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "php -r \"copy('.env.example', '.env');\""
+    ],
+    "post-install-cmd": [
+      "php -r \"include('tools/files.php'); rmdirRecursive('web/wp/wp-content/themes', false); \"",
+      "php -r \"unlink('web/wp/wp-content/plugins/hello.php'); \"",
+      "php -r \"copy('web/wp/wp-content/plugins/index.php', 'web/wp/wp-content/themes/index.php');\""
+    ],
+    "test": [
+      "phpcs"
+    ]
+  }
+}
